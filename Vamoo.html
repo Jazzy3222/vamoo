@@ -1440,6 +1440,82 @@ footer {
   color: #FE2C55;
 }
 
+
+/* Floating registration nudge after scrolling */
+.register-floating-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  max-width: 410px;
+  background: rgba(18, 18, 18, 0.95);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  padding: 16px 18px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  z-index: 9999;
+  transform: translateY(140%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.register-floating-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+.reg-toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.reg-toast-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.reg-toast-content strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+}
+.reg-toast-content p {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 2px 0 0;
+  line-height: 1.35;
+}
+.reg-toast-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.reg-toast-close {
+  background: none;
+  border: 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.15s;
+}
+.reg-toast-close:hover {
+  color: #FFFFFF;
+}
+@media (max-width: 480px) {
+  .register-floating-toast {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    padding: 12px 14px;
+  }
+}
+
 /* Responsive mobile nav */
 @media (max-width: 640px) {
   nav.main-nav { display: none; }
@@ -1762,6 +1838,22 @@ footer {
       </div>
     </div>
 
+  </div>
+</div>
+
+
+<!-- AVISO FLOTANTE DE REGISTRO TRAS SCROLL -->
+<div class="register-floating-toast" id="register-floating-toast" role="dialog" aria-live="polite">
+  <div class="reg-toast-content">
+    <span class="reg-toast-icon">🎁</span>
+    <div>
+      <strong>¡Guarda tus rutas y cupones!</strong>
+      <p>Regístrate gratis para acumular tus 70 XP y unirte a grupos en Lima.</p>
+    </div>
+  </div>
+  <div class="reg-toast-actions">
+    <button class="btn sm mango" id="btn-toast-register">Registrarme</button>
+    <button class="reg-toast-close" id="btn-toast-dismiss" aria-label="Cerrar aviso">&times;</button>
   </div>
 </div>
 
@@ -2755,9 +2847,13 @@ function initAuthSystem() {
     }
   }
 
-  function openAuthModal() {
+  function openAuthModal(isRegister = false) {
     playTone('click');
     showView('main');
+    isRegisterMode = isRegister;
+    $('#auth-modal-title').textContent = isRegisterMode ? 'Regístrate en Vamoo' : 'Inicia sesión en Vamoo';
+    $('#auth-switch-text').textContent = isRegisterMode ? '¿Ya tienes una cuenta?' : '¿No tienes cuenta?';
+    $('#btn-auth-switch').textContent = isRegisterMode ? 'Iniciar sesión' : 'Registrarse';
     modal.classList.add('open');
   }
 
@@ -2847,6 +2943,80 @@ function initAuthSystem() {
   };
 
   renderHeaderUser();
+  initScrollRegisterTrigger(openAuthModal);
+}
+
+
+/* ==========================================================
+   DISPARADOR INTELIGENTE DE REGISTRO TRAS SCROLL Y TIEMPO
+   ========================================================== */
+function initScrollRegisterTrigger(openAuthModalFn) {
+  if (S.user && S.user.loggedIn) return;
+  if (sessionStorage.getItem('vamoo_reg_prompted')) return;
+
+  let hasScrolled = false;
+  let scrollPixels = 0;
+  let secondsBrowsing = 0;
+  let triggered = false;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      hasScrolled = true;
+      scrollPixels = Math.max(scrollPixels, window.scrollY);
+    }
+  }, { passive: true });
+
+  const timer = setInterval(() => {
+    if (S.user && S.user.loggedIn) {
+      clearInterval(timer);
+      return;
+    }
+
+    secondsBrowsing++;
+
+    // Se activa cuando el usuario ha hecho scroll y navega por la página
+    // (30 segundos de navegación activa con scroll hacia rutas/rangos)
+    if (hasScrolled && (secondsBrowsing >= 30 || scrollPixels > 800 && secondsBrowsing >= 15) && !triggered) {
+      triggered = true;
+      clearInterval(timer);
+      sessionStorage.setItem('vamoo_reg_prompted', 'true');
+      showRegisterNudge();
+    }
+  }, 1000);
+
+  function showRegisterNudge() {
+    const toast = $('#register-floating-toast');
+    if (toast) {
+      toast.classList.add('show');
+      playTone('step');
+    }
+
+    // Auto-apertura del modal tras el toast (o al hacer clic en Registrarme)
+    const autoModalTimer = setTimeout(() => {
+      const authModal = $('#modal-auth');
+      if (authModal && !authModal.classList.contains('open') && (!S.user || !S.user.loggedIn)) {
+        if (toast) toast.classList.remove('show');
+        openAuthModalFn(true); // Abrir en modo Registro
+      }
+    }, 4500);
+
+    const toastRegBtn = $('#btn-toast-register');
+    if (toastRegBtn) {
+      toastRegBtn.onclick = () => {
+        clearTimeout(autoModalTimer);
+        if (toast) toast.classList.remove('show');
+        openAuthModalFn(true);
+      };
+    }
+
+    const toastDismissBtn = $('#btn-toast-dismiss');
+    if (toastDismissBtn) {
+      toastDismissBtn.onclick = () => {
+        clearTimeout(autoModalTimer);
+        if (toast) toast.classList.remove('show');
+      };
+    }
+  }
 }
 
 // Inicialización de la aplicación
