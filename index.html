@@ -1195,6 +1195,251 @@ footer {
 }
 
 
+
+/* ==========================================================
+   MODAL DE INICIO DE SESIÓN ESTILO MODERNO (TIKTOK STYLE)
+   ========================================================== */
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.auth-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.auth-card {
+  background: #121212;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  width: 100%;
+  max-width: 420px;
+  padding: 32px 24px 20px;
+  position: relative;
+  transform: translateY(16px) scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+.auth-overlay.open .auth-card {
+  transform: translateY(0) scale(1);
+}
+.auth-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border: 0;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.auth-close-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: scale(1.08);
+}
+.auth-title {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 800;
+  text-align: center;
+  color: #FFFFFF;
+  letter-spacing: -0.025em;
+  margin: 6px 0 24px;
+}
+.auth-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.auth-btn {
+  background: #242424;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  height: 50px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  font-size: 0.94rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  width: 100%;
+  text-align: center;
+}
+.auth-btn:hover {
+  background: #323232;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+.auth-btn:active {
+  transform: translateY(0);
+}
+.auth-btn-icon {
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+.auth-btn-text {
+  flex: 1;
+  text-align: center;
+  margin-right: 28px;
+}
+
+.auth-terms {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.62);
+  text-align: center;
+  margin-top: 24px;
+  line-height: 1.45;
+}
+.auth-terms strong {
+  color: #FFFFFF;
+}
+
+.auth-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 22px;
+  padding-top: 18px;
+  text-align: center;
+  font-size: 0.94rem;
+  color: #FFFFFF;
+}
+.auth-switch-link {
+  color: #FE2C55;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 4px;
+}
+.auth-switch-link:hover {
+  text-decoration: underline;
+}
+
+/* Sub-vista de Formulario / QR */
+.auth-subview {
+  display: none;
+}
+.auth-subview.active {
+  display: block;
+}
+.auth-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 14px;
+  border: 0;
+  background: none;
+}
+.auth-back-btn:hover {
+  color: #FFFFFF;
+}
+.auth-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 14px 0 18px;
+}
+.auth-input {
+  background: #1E1E1E;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 13px 16px;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+}
+.auth-input:focus {
+  border-color: #FE2C55;
+}
+.auth-submit-btn {
+  background: #FE2C55;
+  color: #FFFFFF;
+  border: 0;
+  border-radius: 999px;
+  padding: 13px;
+  font-weight: 700;
+  font-size: 0.96rem;
+  width: 100%;
+  cursor: pointer;
+}
+.auth-qr-container {
+  text-align: center;
+  padding: 10px 0;
+}
+.auth-qr-box {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 16px;
+  display: inline-block;
+  margin: 10px 0 14px;
+}
+
+/* User Badge en Header */
+.user-profile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px 4px 5px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+.user-avatar-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FE2C55, #FF5C7A);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+.btn-user-logout {
+  background: none;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+.btn-user-logout:hover {
+  color: #FE2C55;
+}
+
 /* Responsive mobile nav */
 @media (max-width: 640px) {
   nav.main-nav { display: none; }
@@ -1233,6 +1478,9 @@ footer {
         <a href="#idea">La Idea</a>
       </nav>
       <div class="nav-actions">
+        <div id="auth-header-slot">
+          <button class="btn sm" id="btn-open-auth">Iniciar sesión</button>
+        </div>
         <a href="#rangos" class="xp-pill" id="header-xp-pill" title="Tu puntaje de experiencia acumulado">
           <span class="bolt">⚡</span>
           <span id="hdr-xp">0</span> XP
@@ -1409,6 +1657,112 @@ footer {
       </div>
     </div>
   </footer>
+</div>
+
+
+<!-- MODAL DE INICIO DE SESIÓN (ESTILO MODERNO / TIKTOK) -->
+<div class="auth-overlay" id="modal-auth" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+  <div class="auth-card">
+    <button class="auth-close-btn" id="btn-auth-close" aria-label="Cerrar modal">&times;</button>
+    
+    <!-- VISTA PRINCIPAL: BOTONES SOCIALES -->
+    <div id="auth-view-main">
+      <h2 class="auth-title" id="auth-modal-title">Inicia sesión en Vamoo</h2>
+      
+      <div class="auth-options">
+        <button class="auth-btn" id="btn-auth-qr">
+          <span class="auth-btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v3h-3v-3zm-5 0h3v3h-3v-3zm2 5h3v3h-3v-3zm3 0h3v3h-3v-3zm-5-3h3v3h-3v-3z"/>
+            </svg>
+          </span>
+          <span class="auth-btn-text">Usar código QR</span>
+        </button>
+
+        <button class="auth-btn" id="btn-auth-email">
+          <span class="auth-btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            </svg>
+          </span>
+          <span class="auth-btn-text">Usar teléfono o correo</span>
+        </button>
+
+        <button class="auth-btn" id="btn-auth-facebook">
+          <span class="auth-btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="11" fill="#1877F2"/>
+              <path d="M13.5 12h2.2l.3-2.6h-2.5V8c0-.7.2-1.2 1.3-1.2h1.4V4.5c-.2 0-1.1-.1-2.1-.1-2.1 0-3.5 1.3-3.5 3.6V9.4H8.4V12h2.2v6.6h2.9V12z" fill="#FFF"/>
+            </svg>
+          </span>
+          <span class="auth-btn-text">Continuar con Facebook</span>
+        </button>
+
+        <button class="auth-btn" id="btn-auth-google">
+          <span class="auth-btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+            </svg>
+          </span>
+          <span class="auth-btn-text">Continuar con Google</span>
+        </button>
+
+        <button class="auth-btn" id="btn-auth-apple">
+          <span class="auth-btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-2 .6-2.65 1.35-.56.64-1.06 1.7-0.93 2.73 1.01.08 2.04-.48 2.66-1.23z"/>
+            </svg>
+          </span>
+          <span class="auth-btn-text">Continuar con Apple</span>
+        </button>
+      </div>
+
+      <p class="auth-terms">
+        Al seguir usando una cuenta en <strong>Perú</strong>, aceptas los <strong>Términos del servicio</strong> y confirmas que has leído la <strong>Política de privacidad</strong>.
+      </p>
+
+      <div class="auth-footer">
+        <span id="auth-switch-text">¿No tienes cuenta?</span>
+        <span class="auth-switch-link" id="btn-auth-switch">Registrarse</span>
+      </div>
+    </div>
+
+    <!-- SUB-VISTA: TELÉFONO O CORREO -->
+    <div class="auth-subview" id="auth-view-form">
+      <button class="auth-back-btn" id="btn-back-from-form">← Volver a opciones</button>
+      <h3 style="font-size: 1.5rem; color: #FFF; text-align: center; margin-bottom: 8px;">Ingresa tus datos</h3>
+      <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); text-align: center;">Accede a tu cuenta de Vamoo en Lima</p>
+      
+      <form id="auth-custom-form" onsubmit="return false;" style="margin-top: 18px;">
+        <div class="auth-input-group">
+          <input type="text" class="auth-input" id="auth-input-user" placeholder="Nombre de usuario o correo (ej. Jazzy3222)" value="Jazzy3222" required />
+          <input type="password" class="auth-input" id="auth-input-pass" placeholder="Contraseña" value="••••••••" required />
+        </div>
+        <button class="auth-submit-btn" id="btn-auth-submit-form" type="submit">Iniciar sesión</button>
+      </form>
+    </div>
+
+    <!-- SUB-VISTA: CÓDIGO QR -->
+    <div class="auth-subview" id="auth-view-qr">
+      <button class="auth-back-btn" id="btn-back-from-qr">← Volver a opciones</button>
+      <h3 style="font-size: 1.5rem; color: #FFF; text-align: center; margin-bottom: 8px;">Usa tu código QR</h3>
+      <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); text-align: center;">Escanea este código con la app de Vamoo en tu celular</p>
+      
+      <div class="auth-qr-container">
+        <div class="auth-qr-box">
+          <svg width="170" height="170" viewBox="0 0 170 170" id="auth-login-qr-svg"></svg>
+        </div>
+        <p style="font-size: 0.78rem; color: rgba(255,255,255,0.6);">El código se actualiza periódicamente para tu seguridad.</p>
+        <button class="btn alt sm" id="btn-auth-sim-qr" style="margin-top: 14px; color: #FFF; border-color: rgba(255,255,255,0.3);">
+          ✓ Simular escaneo de QR
+        </button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <!-- MODAL: CUPÓN DIGITAL -->
@@ -2361,12 +2715,147 @@ function renderAll() {
   renderRank();
 }
 
+
+/* ==========================================================
+   LÓGICA DEL SISTEMA DE AUTENTICACIÓN / LOGIN
+   ========================================================== */
+function initAuthSystem() {
+  const modal = $('#modal-auth');
+  const viewMain = $('#auth-view-main');
+  const viewForm = $('#auth-view-form');
+  const viewQr = $('#auth-view-qr');
+  let isRegisterMode = false;
+
+  function renderHeaderUser() {
+    const slot = $('#auth-header-slot');
+    if (!slot) return;
+    if (S.user && S.user.loggedIn) {
+      slot.innerHTML = `
+        <div class="user-profile-badge" title="Sesión activa: ${S.user.name}">
+          <div class="user-avatar-circle">${S.user.avatar || 'J'}</div>
+          <span>${S.user.name}</span>
+          <button class="btn-user-logout" id="btn-logout" title="Cerrar sesión">✕</button>
+        </div>
+      `;
+      const logoutBtn = $('#btn-logout');
+      if (logoutBtn) {
+        logoutBtn.onclick = () => {
+          playTone('click');
+          S.user = null;
+          S.msg = 'Has cerrado sesión en Vamoo.';
+          save();
+          renderHeaderUser();
+          renderPanel();
+        };
+      }
+    } else {
+      slot.innerHTML = `<button class="btn sm" id="btn-open-auth">Iniciar sesión</button>`;
+      const openBtn = $('#btn-open-auth');
+      if (openBtn) openBtn.onclick = openAuthModal;
+    }
+  }
+
+  function openAuthModal() {
+    playTone('click');
+    showView('main');
+    modal.classList.add('open');
+  }
+
+  function closeAuthModal() {
+    modal.classList.remove('open');
+  }
+
+  function showView(view) {
+    viewMain.style.display = view === 'main' ? 'block' : 'none';
+    viewForm.classList.toggle('active', view === 'form');
+    viewQr.classList.toggle('active', view === 'qr');
+    if (view === 'qr') {
+      const qrEl = $('#auth-login-qr-svg');
+      if (qrEl) qrEl.innerHTML = generateQRSvg('VAMOO-AUTH-LOGIN-' + Date.now());
+    }
+  }
+
+  function loginSuccess(name, method) {
+    playTone('win');
+    launchConfetti();
+    const initials = name ? name.substring(0, 2).toUpperCase() : 'J';
+    S.user = {
+      name: name || 'Jazzy3222',
+      avatar: initials,
+      loggedIn: true,
+      method: method || 'web'
+    };
+    S.msg = `¡Bienvenido(a) a Vamoo, ${S.user.name}! Sesión iniciada con éxito.`;
+    save();
+    renderHeaderUser();
+    renderPanel();
+    closeAuthModal();
+  }
+
+  // Eventos de apertura / cierre
+  const openBtn = $('#btn-open-auth');
+  if (openBtn) openBtn.onclick = openAuthModal;
+
+  const closeBtn = $('#btn-auth-close');
+  if (closeBtn) closeBtn.onclick = closeAuthModal;
+
+  modal.onclick = (e) => {
+    if (e.target.id === 'modal-auth') closeAuthModal();
+  };
+
+  // Botón switch Registrarse / Iniciar sesión
+  const switchBtn = $('#btn-auth-switch');
+  if (switchBtn) {
+    switchBtn.onclick = () => {
+      playTone('click');
+      isRegisterMode = !isRegisterMode;
+      $('#auth-modal-title').textContent = isRegisterMode ? 'Regístrate en Vamoo' : 'Inicia sesión en Vamoo';
+      $('#auth-switch-text').textContent = isRegisterMode ? '¿Ya tienes una cuenta?' : '¿No tienes cuenta?';
+      switchBtn.textContent = isRegisterMode ? 'Iniciar sesión' : 'Registrarse';
+    };
+  }
+
+  // Navegación sub-vistas
+  $('#btn-auth-email').onclick = () => { playTone('click'); showView('form'); };
+  $('#btn-auth-qr').onclick = () => { playTone('click'); showView('qr'); };
+  $('#btn-back-from-form').onclick = () => { playTone('click'); showView('main'); };
+  $('#btn-back-from-qr').onclick = () => { playTone('click'); showView('main'); };
+
+  // Proveedores sociales
+  $('#btn-auth-google').onclick = () => {
+    playTone('click');
+    loginSuccess('Jazzy (Google)', 'google');
+  };
+  $('#btn-auth-facebook').onclick = () => {
+    playTone('click');
+    loginSuccess('Jazzy (Facebook)', 'facebook');
+  };
+  $('#btn-auth-apple').onclick = () => {
+    playTone('click');
+    loginSuccess('Jazzy (Apple)', 'apple');
+  };
+
+  // Enviar formulario manual
+  $('#btn-auth-submit-form').onclick = () => {
+    const inputVal = $('#auth-input-user').value.trim() || 'Jazzy3222';
+    loginSuccess(inputVal, 'password');
+  };
+
+  // Simular escaneo de QR
+  $('#btn-auth-sim-qr').onclick = () => {
+    loginSuccess('Jazzy3222', 'qr');
+  };
+
+  renderHeaderUser();
+}
+
 // Inicialización de la aplicación
 initTheme();
 initSound();
 initFilters();
 initHeroSimulation();
 initResetDemo();
+initAuthSystem();
 checkBadges();
 renderAll();
 </script>
