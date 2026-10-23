@@ -1197,14 +1197,14 @@ footer {
 
 
 /* ==========================================================
-   MODAL DE INICIO DE SESIÓN ESTILO MODERNO (TIKTOK STYLE)
+   MODAL DE INICIO DE SESIÓN INTEGRADO A LA IDENTIDAD DE VAMOO
    ========================================================== */
 .auth-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(16, 42, 61, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -1219,18 +1219,21 @@ footer {
   pointer-events: auto;
 }
 .auth-card {
-  background: #121212;
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 24px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  background: var(--surface);
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg), 0 20px 50px rgba(16, 42, 61, 0.25);
   width: 100%;
-  max-width: 420px;
-  padding: 32px 24px 20px;
+  max-width: 440px;
+  padding: 34px 28px 24px;
   position: relative;
-  transform: translateY(16px) scale(0.96);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(18px) scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, color 0.25s ease;
   box-sizing: border-box;
+}
+:root[data-theme="dark"] .auth-card {
+  box-shadow: var(--shadow-lg), 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 .auth-overlay.open .auth-card {
   transform: translateY(0) scale(1);
@@ -1239,105 +1242,129 @@ footer {
   position: absolute;
   top: 18px;
   right: 18px;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
-  color: #FFFFFF;
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  color: var(--muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  border: 0;
+  font-size: 1.25rem;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease;
+  transition: all 0.15s ease;
 }
 .auth-close-btn:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: var(--line);
+  color: var(--ink);
   transform: scale(1.08);
+}
+.auth-brand-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.auth-brand-badge .brand {
+  font-size: 1.85rem;
+}
+.auth-brand-badge .badge-ods {
+  margin-top: 4px;
 }
 .auth-title {
   font-family: var(--font-heading);
-  font-size: 1.85rem;
+  font-size: 1.65rem;
   font-weight: 800;
   text-align: center;
-  color: #FFFFFF;
+  color: var(--ink);
   letter-spacing: -0.025em;
-  margin: 6px 0 24px;
+  margin: 0 0 6px;
+}
+.auth-subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 22px;
+  line-height: 1.4;
 }
 .auth-options {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 11px;
 }
 .auth-btn {
-  background: #242424;
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--surface);
+  color: var(--ink);
+  border: 1.5px solid var(--line);
   border-radius: 999px;
-  height: 50px;
-  padding: 0 16px;
+  height: 48px;
+  padding: 0 18px;
   display: flex;
   align-items: center;
-  font-size: 0.94rem;
+  font-size: 0.93rem;
   font-weight: 600;
+  font-family: var(--font-body);
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  transition: all 0.15s ease;
   width: 100%;
-  text-align: center;
 }
 .auth-btn:hover {
-  background: #323232;
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-1px);
+  background: var(--surface-alt);
+  border-color: var(--route);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(14, 159, 110, 0.15);
 }
 .auth-btn:active {
   transform: translateY(0);
 }
 .auth-btn-icon {
-  width: 28px;
+  width: 24px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-shrink: 0;
+  color: var(--route);
 }
 .auth-btn-text {
   flex: 1;
   text-align: center;
-  margin-right: 28px;
+  margin-right: 24px;
 }
 
 .auth-terms {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.74rem;
+  color: var(--muted);
   text-align: center;
-  margin-top: 24px;
+  margin-top: 22px;
   line-height: 1.45;
 }
 .auth-terms strong {
-  color: #FFFFFF;
+  color: var(--ink);
 }
 
 .auth-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  margin-top: 22px;
-  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+  padding-top: 16px;
   text-align: center;
-  font-size: 0.94rem;
-  color: #FFFFFF;
+  font-size: 0.92rem;
+  color: var(--muted);
 }
 .auth-switch-link {
-  color: #FE2C55;
+  color: var(--route);
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
-  margin-left: 4px;
+  margin-left: 5px;
+  transition: color 0.15s;
 }
 .auth-switch-link:hover {
+  color: var(--route-hover);
   text-decoration: underline;
 }
 
-/* Sub-vista de Formulario / QR */
+/* Sub-vistas (Formulario / QR) */
 .auth-subview {
   display: none;
 }
@@ -1348,46 +1375,57 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--muted);
   font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
   margin-bottom: 14px;
   border: 0;
   background: none;
+  transition: color 0.15s;
 }
 .auth-back-btn:hover {
-  color: #FFFFFF;
+  color: var(--ink);
 }
 .auth-input-group {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin: 14px 0 18px;
+  margin: 16px 0 20px;
 }
 .auth-input {
-  background: #1E1E1E;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
+  background: var(--surface-alt);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
   padding: 13px 16px;
-  color: #FFFFFF;
-  font-family: inherit;
+  color: var(--ink);
+  font-family: var(--font-body);
   font-size: 0.95rem;
   outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 .auth-input:focus {
-  border-color: #FE2C55;
+  border-color: var(--route);
+  box-shadow: 0 0 0 3px var(--route-soft);
 }
 .auth-submit-btn {
-  background: #FE2C55;
-  color: #FFFFFF;
+  background: var(--route);
+  color: var(--onroute);
   border: 0;
   border-radius: 999px;
   padding: 13px;
   font-weight: 700;
-  font-size: 0.96rem;
+  font-size: 0.98rem;
+  font-family: var(--font-body);
   width: 100%;
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(14, 159, 110, 0.3);
+  transition: all 0.15s ease;
+}
+.auth-submit-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(14, 159, 110, 0.4);
 }
 .auth-qr-container {
   text-align: center;
@@ -1395,10 +1433,12 @@ footer {
 }
 .auth-qr-box {
   background: #FFFFFF;
-  border-radius: 16px;
+  border: 2px dashed var(--line);
+  border-radius: var(--radius-md);
   padding: 16px;
   display: inline-block;
   margin: 10px 0 14px;
+  box-shadow: var(--shadow-sm);
 }
 
 /* User Badge en Header */
@@ -1409,23 +1449,27 @@ footer {
   background: var(--surface);
   border: 1.5px solid var(--line);
   border-radius: 999px;
-  padding: 4px 10px 4px 5px;
+  padding: 4px 12px 4px 5px;
   font-size: 0.88rem;
   font-weight: 700;
   color: var(--ink);
   box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s;
+}
+.user-profile-badge:hover {
+  border-color: var(--route);
 }
 .user-avatar-circle {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #FE2C55, #FF5C7A);
-  color: #FFFFFF;
+  background: linear-gradient(135deg, var(--route), #34D399);
+  color: var(--onroute);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
 }
 .btn-user-logout {
   background: none;
@@ -1433,26 +1477,26 @@ footer {
   color: var(--muted);
   cursor: pointer;
   padding: 2px 4px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   border-radius: 4px;
+  transition: color 0.15s;
 }
 .btn-user-logout:hover {
-  color: #FE2C55;
+  color: #EF4444;
 }
 
-
-/* Floating registration nudge after scrolling */
+/* Floating registration nudge after scrolling (Adaptado a Vamoo) */
 .register-floating-toast {
   position: fixed;
   bottom: 24px;
   right: 24px;
   max-width: 410px;
-  background: rgba(18, 18, 18, 0.95);
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 20px;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1.5px solid var(--route);
+  border-radius: var(--radius-md);
   padding: 16px 18px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+  box-shadow: var(--shadow-lg), 0 10px 30px rgba(14, 159, 110, 0.15);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1480,12 +1524,12 @@ footer {
 .reg-toast-content strong {
   display: block;
   font-size: 0.95rem;
-  color: #FFFFFF;
+  color: var(--ink);
   font-family: var(--font-heading);
 }
 .reg-toast-content p {
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.8rem;
+  color: var(--muted);
   margin: 2px 0 0;
   line-height: 1.35;
 }
@@ -1498,14 +1542,14 @@ footer {
 .reg-toast-close {
   background: none;
   border: 0;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--muted);
   font-size: 1.1rem;
   cursor: pointer;
   padding: 4px;
   transition: color 0.15s;
 }
 .reg-toast-close:hover {
-  color: #FFFFFF;
+  color: var(--ink);
 }
 @media (max-width: 480px) {
   .register-floating-toast {
@@ -1736,14 +1780,20 @@ footer {
 </div>
 
 
-<!-- MODAL DE INICIO DE SESIÓN (ESTILO MODERNO / TIKTOK) -->
+<!-- MODAL DE INICIO DE SESIÓN INTEGRADO A VAMOO -->
 <div class="auth-overlay" id="modal-auth" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
   <div class="auth-card">
     <button class="auth-close-btn" id="btn-auth-close" aria-label="Cerrar modal">&times;</button>
     
     <!-- VISTA PRINCIPAL: BOTONES SOCIALES -->
     <div id="auth-view-main">
+      <div class="auth-brand-badge">
+        <a class="brand" href="#">Vamoo<span>.</span></a>
+        <span class="badge-ods">Lima · ODS 3</span>
+      </div>
+      
       <h2 class="auth-title" id="auth-modal-title">Inicia sesión en Vamoo</h2>
+      <p class="auth-subtitle" id="auth-modal-subtitle">Guarda tu progreso de XP, desbloquea recompensas y únete a caminatas en grupo.</p>
       
       <div class="auth-options">
         <button class="auth-btn" id="btn-auth-qr">
@@ -1764,16 +1814,6 @@ footer {
           <span class="auth-btn-text">Usar teléfono o correo</span>
         </button>
 
-        <button class="auth-btn" id="btn-auth-facebook">
-          <span class="auth-btn-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="11" fill="#1877F2"/>
-              <path d="M13.5 12h2.2l.3-2.6h-2.5V8c0-.7.2-1.2 1.3-1.2h1.4V4.5c-.2 0-1.1-.1-2.1-.1-2.1 0-3.5 1.3-3.5 3.6V9.4H8.4V12h2.2v6.6h2.9V12z" fill="#FFF"/>
-            </svg>
-          </span>
-          <span class="auth-btn-text">Continuar con Facebook</span>
-        </button>
-
         <button class="auth-btn" id="btn-auth-google">
           <span class="auth-btn-icon">
             <svg width="20" height="20" viewBox="0 0 24 24">
@@ -1786,9 +1826,19 @@ footer {
           <span class="auth-btn-text">Continuar con Google</span>
         </button>
 
+        <button class="auth-btn" id="btn-auth-facebook">
+          <span class="auth-btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="11" fill="#1877F2"/>
+              <path d="M13.5 12h2.2l.3-2.6h-2.5V8c0-.7.2-1.2 1.3-1.2h1.4V4.5c-.2 0-1.1-.1-2.1-.1-2.1 0-3.5 1.3-3.5 3.6V9.4H8.4V12h2.2v6.6h2.9V12z" fill="#FFF"/>
+            </svg>
+          </span>
+          <span class="auth-btn-text">Continuar con Facebook</span>
+        </button>
+
         <button class="auth-btn" id="btn-auth-apple">
           <span class="auth-btn-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-2 .6-2.65 1.35-.56.64-1.06 1.7-0.93 2.73 1.01.08 2.04-.48 2.66-1.23z"/>
             </svg>
           </span>
@@ -1797,11 +1847,11 @@ footer {
       </div>
 
       <p class="auth-terms">
-        Al seguir usando una cuenta en <strong>Perú</strong>, aceptas los <strong>Términos del servicio</strong> y confirmas que has leído la <strong>Política de privacidad</strong>.
+        Al continuar con tu cuenta en <strong>Lima, Perú</strong>, aceptas los <strong>Términos de Vamoo</strong> y confirmas la <strong>Política de privacidad</strong> para el bienestar comunitario.
       </p>
 
       <div class="auth-footer">
-        <span id="auth-switch-text">¿No tienes cuenta?</span>
+        <span id="auth-switch-text">¿Aún no tienes cuenta?</span>
         <span class="auth-switch-link" id="btn-auth-switch">Registrarse</span>
       </div>
     </div>
@@ -1809,38 +1859,37 @@ footer {
     <!-- SUB-VISTA: TELÉFONO O CORREO -->
     <div class="auth-subview" id="auth-view-form">
       <button class="auth-back-btn" id="btn-back-from-form">← Volver a opciones</button>
-      <h3 style="font-size: 1.5rem; color: #FFF; text-align: center; margin-bottom: 8px;">Ingresa tus datos</h3>
-      <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); text-align: center;">Accede a tu cuenta de Vamoo en Lima</p>
+      <h3 style="font-size: 1.4rem; color: var(--ink); text-align: center; margin-bottom: 6px;">Ingresa tus datos</h3>
+      <p style="font-size: 0.88rem; color: var(--muted); text-align: center;">Accede a tus caminatas y logros en Lima</p>
       
       <form id="auth-custom-form" onsubmit="return false;" style="margin-top: 18px;">
         <div class="auth-input-group">
-          <input type="text" class="auth-input" id="auth-input-user" placeholder="Nombre de usuario o correo (ej. Jazzy3222)" value="Jazzy3222" required />
+          <input type="text" class="auth-input" id="auth-input-user" placeholder="Usuario o correo (ej. Jazzy3222)" value="Jazzy3222" required />
           <input type="password" class="auth-input" id="auth-input-pass" placeholder="Contraseña" value="••••••••" required />
         </div>
-        <button class="auth-submit-btn" id="btn-auth-submit-form" type="submit">Iniciar sesión</button>
+        <button class="auth-submit-btn" id="btn-auth-submit-form" type="submit">Iniciar sesión en Vamoo</button>
       </form>
     </div>
 
     <!-- SUB-VISTA: CÓDIGO QR -->
     <div class="auth-subview" id="auth-view-qr">
       <button class="auth-back-btn" id="btn-back-from-qr">← Volver a opciones</button>
-      <h3 style="font-size: 1.5rem; color: #FFF; text-align: center; margin-bottom: 8px;">Usa tu código QR</h3>
-      <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); text-align: center;">Escanea este código con la app de Vamoo en tu celular</p>
+      <h3 style="font-size: 1.4rem; color: var(--ink); text-align: center; margin-bottom: 6px;">Escanea tu código QR</h3>
+      <p style="font-size: 0.88rem; color: var(--muted); text-align: center;">Conéctate al instante desde la app móvil de Vamoo</p>
       
       <div class="auth-qr-container">
         <div class="auth-qr-box">
           <svg width="170" height="170" viewBox="0 0 170 170" id="auth-login-qr-svg"></svg>
         </div>
-        <p style="font-size: 0.78rem; color: rgba(255,255,255,0.6);">El código se actualiza periódicamente para tu seguridad.</p>
-        <button class="btn alt sm" id="btn-auth-sim-qr" style="margin-top: 14px; color: #FFF; border-color: rgba(255,255,255,0.3);">
-          ✓ Simular escaneo de QR
+        <p style="font-size: 0.8rem; color: var(--muted);">Código seguro encriptado para inicio rápido.</p>
+        <button class="btn alt sm" id="btn-auth-sim-qr" style="margin-top: 14px;">
+          ✓ Simular confirmación en móvil
         </button>
       </div>
     </div>
 
   </div>
 </div>
-
 
 <!-- AVISO FLOTANTE DE REGISTRO TRAS SCROLL -->
 <div class="register-floating-toast" id="register-floating-toast" role="dialog" aria-live="polite">
@@ -2851,8 +2900,10 @@ function initAuthSystem() {
     playTone('click');
     showView('main');
     isRegisterMode = isRegister;
-    $('#auth-modal-title').textContent = isRegisterMode ? 'Regístrate en Vamoo' : 'Inicia sesión en Vamoo';
-    $('#auth-switch-text').textContent = isRegisterMode ? '¿Ya tienes una cuenta?' : '¿No tienes cuenta?';
+    $('#auth-modal-title').textContent = isRegisterMode ? 'Únete a Vamoo' : 'Inicia sesión en Vamoo';
+    const sub = $('#auth-modal-subtitle');
+    if (sub) sub.textContent = isRegisterMode ? 'Crea tu perfil gratis para guardar tu progreso de XP y unirte a caminatas grupales.' : 'Guarda tu progreso de XP, desbloquea recompensas y únete a caminatas en grupo.';
+    $('#auth-switch-text').textContent = isRegisterMode ? '¿Ya tienes una cuenta?' : '¿Aún no tienes cuenta?';
     $('#btn-auth-switch').textContent = isRegisterMode ? 'Iniciar sesión' : 'Registrarse';
     modal.classList.add('open');
   }
@@ -2905,8 +2956,10 @@ function initAuthSystem() {
     switchBtn.onclick = () => {
       playTone('click');
       isRegisterMode = !isRegisterMode;
-      $('#auth-modal-title').textContent = isRegisterMode ? 'Regístrate en Vamoo' : 'Inicia sesión en Vamoo';
-      $('#auth-switch-text').textContent = isRegisterMode ? '¿Ya tienes una cuenta?' : '¿No tienes cuenta?';
+      $('#auth-modal-title').textContent = isRegisterMode ? 'Únete a Vamoo' : 'Inicia sesión en Vamoo';
+      const sub = $('#auth-modal-subtitle');
+      if (sub) sub.textContent = isRegisterMode ? 'Crea tu perfil gratis para guardar tu progreso de XP y unirte a caminatas grupales.' : 'Guarda tu progreso de XP, desbloquea recompensas y únete a caminatas en grupo.';
+      $('#auth-switch-text').textContent = isRegisterMode ? '¿Ya tienes una cuenta?' : '¿Aún no tienes cuenta?';
       switchBtn.textContent = isRegisterMode ? 'Iniciar sesión' : 'Registrarse';
     };
   }
