@@ -1560,6 +1560,158 @@ footer {
   }
 }
 
+/* ==========================================================
+   TRANSICIONES Y EFECTOS ESTILO APPLE / IPHONE (iOS DESIGN)
+   ========================================================== */
+
+/* 1. Header estilo Apple con desenfoque profundo y saturación */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: saturate(180%) blur(22px);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  background: rgba(244, 248, 246, 0.82);
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+:root[data-theme="dark"] header {
+  background: rgba(12, 25, 36, 0.82);
+}
+header.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 2. Hero Headline con gradiente sutil estilo Apple Keynote */
+.hero h1 {
+  background: linear-gradient(135deg, var(--ink) 40%, var(--route) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+:root[data-theme="dark"] .hero h1 {
+  background: linear-gradient(135deg, #FFFFFF 40%, var(--route) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 3. Animación de revelación suave por scroll (Apple Scroll Reveal) */
+.apple-reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.985);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.apple-reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Retardo escalonado para elementos en cuadrícula (Staggered Children) */
+.apple-stagger > *:nth-child(1) { transition-delay: 0.04s; }
+.apple-stagger > *:nth-child(2) { transition-delay: 0.10s; }
+.apple-stagger > *:nth-child(3) { transition-delay: 0.16s; }
+.apple-stagger > *:nth-child(4) { transition-delay: 0.22s; }
+.apple-stagger > *:nth-child(5) { transition-delay: 0.28s; }
+.apple-stagger > *:nth-child(6) { transition-delay: 0.34s; }
+
+/* 4. Efecto de Tarjeta con Profundidad 3D y Reflejo Especular (Apple Card Glare) */
+.apple-card-tilt {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+.apple-card-tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.14) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.apple-card-tilt:hover::after {
+  opacity: 1;
+}
+
+/* 5. Shimmer continuo en barras de progreso (Apple Activity style) */
+.bar-track {
+  position: relative;
+  overflow: hidden;
+}
+.bar-fill {
+  position: relative;
+  overflow: hidden;
+}
+.bar-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: appleShimmer 2.4s infinite ease-in-out;
+  border-radius: inherit;
+}
+@keyframes appleShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* 6. Transición elástica en botones estilo iOS (Haptic Feedback Physics) */
+.btn, .btn-icon, .auth-btn, .tab, .filter-btn, .xp-pill {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              filter 0.18s ease, 
+              box-shadow 0.18s ease,
+              background-color 0.18s ease;
+}
+.btn:active, .btn-icon:active, .auth-btn:active, .tab:active, .filter-btn:active, .xp-pill:active {
+  transform: scale(0.96) !important;
+}
+
+/* 7. Animación de cambio de ruta con Crossfade suave */
+.panel-transition-enter {
+  animation: applePanelEnter 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes applePanelEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 8. Modales con apertura elástica estilo iOS Sheet */
+.modal-overlay .modal-card,
+.auth-overlay .auth-card {
+  transform: translateY(28px) scale(0.94);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
+}
+.modal-overlay.open .modal-card,
+.auth-overlay.open .auth-card {
+  transform: translateY(0) scale(1);
+}
+
+/* 9. Brillo suave en pines del mapa SVG */
+.map-pin {
+  transition: r 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              fill 0.25s ease, stroke 0.25s ease;
+}
+.map-pin:hover {
+  r: 10px;
+}
+
 /* Responsive mobile nav */
 @media (max-width: 640px) {
   nav.main-nav { display: none; }
@@ -2342,6 +2494,7 @@ function renderRouteTabs() {
       S.msg = '';
       save();
       renderAll();
+initAppleEffects();
     };
   });
 }
@@ -2350,6 +2503,12 @@ function renderRouteTabs() {
    RENDER: PANEL PRINCIPAL DE LA RUTA SELECCIONADA
    ========================================================== */
 function renderPanel() {
+  const panelEl = $('#route-panel');
+  if (panelEl) {
+    panelEl.classList.remove('panel-transition-enter');
+    void panelEl.offsetWidth; // Forzar reflow
+    panelEl.classList.add('panel-transition-enter');
+  }
   const r = routes.find(x => x.id === S.cur) || routes[0];
   const n = S.prog[r.id] || 0;
   const total = r.stops.length;
@@ -2497,6 +2656,7 @@ function renderPanel() {
       checkBadges();
       save();
       renderAll();
+initAppleEffects();
     };
   }
 
@@ -2515,6 +2675,7 @@ function renderPanel() {
       S.msg = `Ruta reiniciada. ¡Listo para volver a caminar!`;
       save();
       renderAll();
+initAppleEffects();
     };
   }
 
@@ -2531,6 +2692,7 @@ function renderPanel() {
       checkBadges();
       save();
       renderAll();
+initAppleEffects();
     };
   }
 
@@ -2791,6 +2953,7 @@ function initFilters() {
       if (match) S.cur = match.id;
       save();
       renderAll();
+initAppleEffects();
     };
   });
 }
@@ -2815,12 +2978,14 @@ function initHeroSimulation() {
         checkBadges();
         save();
         renderAll();
+initAppleEffects();
         // Scroll hacia rutas
         $('#rutas').scrollIntoView({ behavior: 'smooth' });
       } else {
         S.prog[r.id] = 0;
         save();
         renderAll();
+initAppleEffects();
       }
     };
   }
@@ -2836,6 +3001,7 @@ function initResetDemo() {
       S.unlockedBadges = {};
       save();
       renderAll();
+initAppleEffects();
     }
   };
 }
@@ -3072,6 +3238,110 @@ function initScrollRegisterTrigger(openAuthModalFn) {
   }
 }
 
+
+/* ==========================================================
+   MOTOR DE TRANSICIONES Y EFECTOS ESTILO APPLE / IPHONE
+   ========================================================== */
+function initAppleEffects() {
+  // 1. Header con sombra dinámica al hacer scroll
+  const header = $('header');
+  window.addEventListener('scroll', () => {
+    if (header) {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // 2. Observer de revelación suave por scroll (Apple Scroll Reveal)
+  const revealTargets = $$(
+    'section, .hero > div, .map-card, .route-tabs, .panel, .ranks-grid > div, .badges-section, .ods-grid, .why-grid'
+  );
+  revealTargets.forEach(el => el.classList.add('apple-reveal'));
+
+  // Aplicar clases de escalonado (stagger) a cuadrículas
+  const staggerContainers = $$('.route-tabs, .ods-grid, .why-grid, .badges-grid, .ladder');
+  staggerContainers.forEach(grid => grid.classList.add('apple-stagger'));
+
+  let countUpDone = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Si entra la sección de impacto ODS 3, activar contador estilo Apple Health
+        if ((entry.target.id === 'impacto' || entry.target.closest('#impacto')) && !countUpDone) {
+          countUpDone = true;
+          animateAppleCounters();
+        }
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  revealTargets.forEach(el => observer.observe(el));
+
+  // 3. Animación de conteo fluido para números (Apple Health style)
+  function animateAppleCounters() {
+    const counters = [
+      { id: '#metric-steps', target: parseInt($('#metric-steps').textContent.replace(/[^0-9]/g, '')) || 4200, suffix: '' },
+      { id: '#metric-kcal', target: parseInt($('#metric-kcal').textContent.replace(/[^0-9]/g, '')) || 210, suffix: '' },
+      { id: '#metric-time', target: parseInt($('#metric-time').textContent.replace(/[^0-9]/g, '')) || 45, suffix: ' min' }
+    ];
+
+    const duration = 1200; // ms
+    const startTime = performance.now();
+
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Curva de aceleración Apple (Cubic Ease Out)
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+
+      counters.forEach(c => {
+        const el = $(c.id);
+        if (el) {
+          const current = Math.round(c.target * easeOut);
+          el.textContent = current.toLocaleString('es-PE') + c.suffix;
+        }
+      });
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+    requestAnimationFrame(update);
+  }
+
+  // 4. Efecto de Inclinación 3D y Reflejo Especular (Apple Card Glare)
+  const tiltCards = $$('.map-card, .panel, .why-card, .ods-metric-card, .me-card, .route-card-tab');
+  tiltCards.forEach(card => {
+    card.classList.add('apple-card-tilt');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+
+      // Inclinación sutil de 3 grados (elegante, no exagerada)
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -3.5;
+      const rotateY = ((x - centerX) / centerX) * 3.5;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.012, 1.012, 1.012)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    });
+  });
+}
+
 // Inicialización de la aplicación
 initTheme();
 initSound();
@@ -3081,6 +3351,7 @@ initResetDemo();
 initAuthSystem();
 checkBadges();
 renderAll();
+initAppleEffects();
 </script>
 </body>
 </html>
